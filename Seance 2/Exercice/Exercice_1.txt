@@ -8,7 +8,7 @@ Exercice 1: Cleaning Data with Pandas
 4.	Unifier la forme des dates de la colonne "Date_Naissance".
 5.	Ajouter une nouvelle colonne nommée "Age" qui calcule l'âge des étudiants en se basant sur leurs dates de naissance "Date_Naissance".
 6.	Ajouter une colonne "Email" : créer une adresse sous la forme prenom.nom@usmba.ac.ma à partir des colonnes Nom et Prénom en supprimant les espaces, apostrophes (') et tirets (-), puis en concaténant Nom et Prénom avec un point, en majuscules, et en ajoutant @usmba.ac.ma (ex : EL MOQADEM + AYMANE MOUBARIK → elmoqadem.aymanemoubarik@usmba.ac.ma, N'MAR + HAJAR → nmar.hajar@usmba.ac.ma, ET-TAALABI + SEFIANE → ettaalabi.sefiane@usmba.ac.ma).
-7.	Ajouter une nouvelle colonne nommée "Accepted" qui accepte deux valeurs, Yes ou No. Si l’âge de l’étudiant ne dépasse pas 21 ans et sa ville natale est FES ou MEKNES, alors sa candidature pour avoir une bourse d’étude de master est acceptée, sinon, elle est refusée.
+7.	Ajouter une nouvelle colonne nommée "Accepted" qui accepte deux valeurs, Yes ou No. Si l’âge de l’étudiant ne dépasse pas 24 ans et sa ville natale est FES ou MEKNES, alors sa candidature pour avoir une bourse d’étude de master est acceptée, sinon, elle est refusée.
 8.	Sauvegarder le résultat en utilisant pandas.DataFrame.to_csv.
 9.	Combien d'étudiants ont été acceptés pour la bourse ?
 10.	Afficher la répartition des étudiants par ville.
