@@ -120,3 +120,26 @@ print(f"Total generation time: {end_total - start_total:.2f} seconds")
 
 
 ####################################################################################################################################
+
+
+import pandas as pd
+import time
+
+start = time.time()
+df_pd = pd.read_csv(file_path)
+print("Pandas load time:", time.time() - start)
+
+
+####################################################################################################################################
+
+
+import polars as pl
+import time
+
+start = time.time()
+df_pl = pl.read_csv(file_path)
+print("Polars load time:", time.time() - start)
+
+
+
+####################################################################################################################################
