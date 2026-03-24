@@ -40,3 +40,83 @@ print(f"CSV file generated at: {file_path}")
 print(f"Time taken to generate the file: {end_time - start_time:.2f} seconds")
 
 # You can change num_rows to generate a larger file if needed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################################
+
+
+
+import polars as pl
+import numpy as np
+import string
+import os
+import time
+
+file_path = r"C:\Users\Notebook\Jupyter Python Notebooks\large_test_file.csv"
+
+rows_per_chunk = 1_000_000
+num_chunks = 25
+
+if os.path.exists(file_path):
+    os.remove(file_path)
+
+def random_strings(n, length):
+    letters = np.array(list(string.ascii_letters))
+    return (
+        np.random.choice(letters, (n, length))
+        .view(f'U{length}')
+        .reshape(n)
+    )
+
+start_total = time.time()
+
+for chunk in range(num_chunks):
+
+    start_id = chunk * rows_per_chunk
+    end_id = start_id + rows_per_chunk
+
+    df = pl.DataFrame({
+        "id": np.arange(start_id, end_id),
+        "name": random_strings(rows_per_chunk, 10),
+        "city": random_strings(rows_per_chunk, 6),
+        "income": np.random.randint(30000, 150000, rows_per_chunk),
+        "status": np.random.choice(
+            ["Single", "Married", "Divorced", "Widowed"],
+            rows_per_chunk
+        )
+    })
+
+    if chunk == 0:
+        # First chunk creates file + header
+        df.write_csv(file_path)
+    else:
+        # Append in binary mode (IMPORTANT)
+        with open(file_path, "ab") as f:
+            df.write_csv(f, include_header=False)
+
+    print(f"Chunk {chunk+1}/{num_chunks} written")
+
+end_total = time.time()
+
+print("\nFinished!")
+print(f"Total generation time: {end_total - start_total:.2f} seconds")
+
+
+
+####################################################################################################################################
