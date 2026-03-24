@@ -143,3 +143,40 @@ print("Polars load time:", time.time() - start)
 
 
 ####################################################################################################################################
+
+
+
+
+import pandas as pd
+import polars as pl
+import time
+
+file_path = r"C:\Users\Notebook\Jupyter Python Notebooks\large_test_file.csv"
+
+print("=== Pandas Eager ===")
+start = time.time()
+df_pd = pd.read_csv(file_path)
+# Example operation: filter income > 50k and select columns
+df_pd = df_pd[df_pd["income"] > 50000][["id", "income"]]
+end = time.time()
+print(f"Pandas time: {end - start:.2f} s")
+print(f"Rows: {len(df_pd)}\n")
+
+print("=== Polars Eager ===")
+start = time.time()
+df_pl = pl.read_csv(file_path)
+# Same operation
+df_pl = df_pl.filter(pl.col("income") > 50000).select(["id", "income"])
+end = time.time()
+print(f"Polars eager time: {end - start:.2f} s")
+print(f"Rows: {df_pl.height}\n")
+
+print("=== Polars Lazy ===")
+start = time.time()
+df_lazy = pl.scan_csv(file_path)  # Lazy read
+df_lazy = df_lazy.filter(pl.col("income") > 50000).select(["id", "income"])
+# Trigger execution
+df_lazy_result = df_lazy.collect()
+end = time.time()
+print(f"Polars lazy time: {end - start:.2f} s")
+print(f"Rows: {df_lazy_result.height}")
