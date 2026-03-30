@@ -1,0 +1,12 @@
+Exercice 2: Cleaning Data with PowerQuery
+
+
+
+1.	Charger le fichier "MLAIM.csv".
+2.	Supprimer les lignes qui contiennent des valeurs vides.
+3.	Supprimer les lignes en doublons.
+4.	Unifier la forme des dates de la colonne "Date_Naissance".
+5.	Ajouter une nouvelle colonne nommée "Age" qui calcule l'âge des étudiants en se basant sur leurs dates de naissance "Date_Naissance".
+6.	Ajouter une colonne "Email". L'email universitaire doit être sous la forme suivante : prenom.nom@usmba.ac.ma.
+7.	Ajouter une nouvelle colonne nommée "Accepted" qui accepte deux valeurs, Yes ou No. Si l’âge de l’étudiant ne dépasse pas 24 ans et sa ville natale est FES ou MEKNES, alors sa candidature pour avoir une bourse d’étude de master est acceptée, sinon, elle est refusée.
+8.	Sauvegarder les changements.
